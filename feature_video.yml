@@ -1,0 +1,140 @@
+# A ci/cd process for making short marketing videos for features. Source file is figma presentaiton.
+# This is progress will be done by a human, but can be automated in the future.
+# This is a manual process for now.
+
+# Check figma presentation if the flow has transitions, animations, etc.
+# If yes, then create a video with the same transitions and animations.
+#  - Since the presentations will serve as styled storyboards
+#  - Ensure the following about the presentation ensure it's ready for video creation:
+#    - All slides are in order
+#    - Clean up elements outside figma frames
+#    - All slides have the correct content
+#    - All slides have the correct transitions
+#    - All slides have the correct timings
+#   - If the presentation is ready, move on to next stage of the process: video production
+#    - Is presentation prototype good for video creation?
+#     - If yes,
+#      - start screen recording the prototype
+#      - Record the video
+#      - Edit the video
+#      - Move on the next stage of the process: sound production
+#     - If no,
+#      - Move on the next part of the process: video production
+#       - Export assets from the figma presentation in the folder
+#       - Folder structure:
+#         - assets
+#           - pngs
+#           - svgs
+#           - videos
+#        - Use software x to create the video
+#        - Render the video with the following media encoder settings:
+#          - Format: mp4
+#          - Codec: H.264
+#          - Resolution: 1920x1080
+#          - Frame rate: 30fps
+#          - Bitrate: 8Mbps < x < 12Mbps
+#          - Audio: AAC, 48kHz, 320kbps
+#        - Move on the next part of the process: sound production
+#         - Sound deliverables:
+#           - Sound effects
+#           - Background music
+#           - Voice over(if needed)
+#         - Use software y to create the sound
+#         - Render the sound with the following settings:
+#           - Format: mp3
+#           - Bitrate: 320kbps
+#           - Sample rate: 48kHz
+#           - Channels: Stereo
+#         - Move on the next stage of the process: Final render
+#          - Combine the video and sound
+#          - Render the final video
+#          - Move on the next stage of the process: Review
+#           - Get approval from the stakeholders
+#           - If approved, move on the next stage of the process: Distribution
+#         - Distribute the video to the following platforms:
+#           - LinkedIn
+#           - Twitter
+#           - Youtube
+#         - Move on the next stage of the process: Archive
+#          - Archive the video in the following locations:
+#            - SharePoint
+#            - OneDrive
+#         - Move on the next stage of the process: Done
+#          - Done
+#   - If no, go back to the figma editing step
+
+---
+name: feature_video
+description: A ci/cd process for making short marketing videos for features. Source file is figma presentaiton.
+stages:
+  - name: figma_editing
+    description: Check figma presentation if the flow has transitions, animations, etc.
+    steps:
+      - name: check_presentation
+        description: If yes, then create a video with the same transitions and animations.
+      - name: presentation_ready
+        description: Ensure the following about the presentation ensure it's ready for video creation
+        steps:
+          - name: slides_order
+            description: All slides are in order
+          - name: clean_up_elements
+            description: Clean up elements outside figma frames
+          - name: correct_content
+            description: All slides have the correct content
+
+  - name: video_production
+    description: If the presentation is ready, move on to next stage of the process
+    steps:
+      - name: prototype_good
+        description: Is presentation prototype good for video creation?
+        steps:
+          - name: start_screen_recording
+            description: start screen recording the prototype
+          - name: record_video
+            description: Record the video
+          - name: edit_video
+            description: Edit the video
+      - name: export_assets
+        description: Export assets from the figma presentation in the folder
+        steps:
+          - name: folder_structure
+            description: Folder structure
+          - name: create_video
+            description: Use software x to create the video
+          - name: render_video
+            description: Render the video with the following media encoder settings
+      - name: sound_production
+        description: Move on the next part of the process
+        steps:
+          - name: sound_deliverables
+            description: Sound deliverables
+          - name: create_sound
+            description: Use software y to create the sound
+          - name: render_sound
+            description: Render the sound with the following settings
+      - name: final_render
+        description: Move on the next stage of the process
+        steps:
+          - name: combine_video_sound
+            description: Combine the video and sound
+          - name: render_final_video
+            description: Render the final video
+      - name: review
+        description: Move on the next stage of the process
+        steps:
+          - name: get_approval
+            description: Get approval from the stakeholders
+          - name: distribute_video
+            description: Distribute the video to the following platforms
+      - name: archive
+        description: Move on the next stage of the process
+        steps:
+          - name: archive_video
+            description: Archive the video in the following locations
+      - name: done
+        description: Move on the next stage of the process
+        steps:
+          - name: done
+            description: Done
+
+
