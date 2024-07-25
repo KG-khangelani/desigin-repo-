@@ -1,0 +1,64 @@
+name: UX Mock Process
+
+on:
+  workflow_dispatch:
+    inputs:
+      design_stage:
+        description: 'Design stage'
+        required: true
+        default: 'Initial Design'
+        type: choice
+        options:
+        - Initial Design
+        - User Testing
+        - Final Review
+      assignee:
+        description: 'Assign to a designer'
+        required: true
+        default: 'username'
+
+jobs:
+  ux_design:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Notify team
+      run: |
+        echo "Starting the ${{ github.event.inputs.design_stage }} stage"
+        echo "Assigned to: ${{ github.event.inputs.assignee }}"
+
+    - name: Upload design files to cloud storage
+      run: |
+        # Replace with your cloud storage upload script
+        echo "Uploading design files to cloud storage..."
+        # Example command: aws s3 sync ./designs s3://your-bucket/designs
+
+    - name: Notify assignee via GitHub issue
+      run: |
+        curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -d '{"title":"New Design Task: ${{ github.event.inputs.design_stage }}","body":"You have been assigned a new design task. Please check the design files in the cloud storage.","assignees":["${{ github.event.inputs.assignee }}"]}' \
+        https://api.github.com/repos/${{ github.repository }}/issues
+
+    - name: Generate design documentation
+      run: |
+        # Replace with your documentation generation script
+        echo "Generating design documentation..."
+        # Example command: node generate-docs.js
+
+    - name: Upload design documentation
+      run: |
+        # Replace with your documentation upload script
+        echo "Uploading design documentation..."
+        # Example command: aws s3 cp ./docs s3://your-bucket/docs --recursive
+
+    - name: Notify team about documentation
+      run: |
+        echo "Design documentation has been uploaded. Please review."
