@@ -68,7 +68,7 @@ jobs:
   
   sound_production:
     runs-on:  ubuntu-latest
-    needs: {cleanup, video_production}
+    needs: [cleanup, video_production]
     steps:
       - name: create_sound
         run: |
