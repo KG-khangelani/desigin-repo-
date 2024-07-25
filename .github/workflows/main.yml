@@ -1,3 +1,7 @@
+# This is a basic workflow that is manually triggered
+
+name: Manual Design
+
 stages:
   - cleanup
   - video_production
