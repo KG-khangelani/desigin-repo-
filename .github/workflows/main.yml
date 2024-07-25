@@ -1,8 +1,20 @@
 # This is a basic workflow that is manually triggered
 
 name: Manual Design
-
-stages:
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Name of the project'
+        # Default value if no value is explicitly provided
+        default: 'Show reel'
+        # Input has to be provided for the workflow to run
+        required: true
+        # The data type of the input
+        type: string
+jobs:
   - cleanup
   - video_production
   - sound_production
@@ -54,10 +66,10 @@ video_production:
           - name: render_video
             description: Render the video with the following media encoder settings
 
-name: sound_production
-description: Prepare sound for the video
-steps:
-  - name: create_sound
-    description: Use software y to create the sound
-  - name: render_sound
-    description: Render the sound with the following settings
+sound_production:
+  description: Prepare sound for the video
+  steps:
+    - name: create_sound
+      description: Use software y to create the sound
+    - name: render_sound
+      description: Render the sound with the following settings
