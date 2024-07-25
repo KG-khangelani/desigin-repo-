@@ -14,62 +14,64 @@ on:
         required: true
         # The data type of the input
         type: string
+# jobs:
+#   cleanup
+#   video_production
+#   sound_production
+#   render
+#   review
+#   deliverables
+#   done
+#   archive
 jobs:
-  - cleanup
-  - video_production
-  - sound_production
-  - render
-  - review
-  - deliverables
-  - done
-  - archive
-
-cleanup:
-  - name: cleanup
-    description: Clean up the presentation
+  cleanup:
+    runs-on:  ubuntu-latest
     steps:
       - name: correct_content
-        description: All slides have the correct content
-      - name: correct_order
-        description: All slides are in the correct order
-      - name: correct_fonts
-        description: All slides have the correct fonts
-      - name: correct_colors
-        description: All slides have the correct layout
-      - name: correct_animations
-        description: All slides have the correct animations
-      - name: remove_element_outside_frame
-        description: Remove elements outside the figma frames
-      - name: verify_files
-        description: Verify file has no errors
+        run: |
+          echo "All slides have the correct content"
 
-video_production:
-  - name: video_production
-    description: If the presentation is ready, move on to next stage of the process
+      # - name: correct_order
+      #   description: All slides are in the correct order
+        
+      # - name: correct_fonts
+      #   description: All slides have the correct fonts
+        
+      # - name: correct_colors
+      #   description: All slides have the correct layout
+        
+      # - name: correct_animations
+      #   description: All slides have the correct animations
+        
+      # - name: remove_element_outside_frame
+      #   description: Remove elements outside the figma frames
+        
+      # - name: verify_files
+      #   description: Verify file has no errors
+
+  video_production:
+      runs-on:  ubuntu-latest
+      needs: cleanup
+      steps:
+        - name: screen_record
+          run: |
+            echo "Screen recording"
+        # - name: export_assets
+        #   description: Export assets from the figma presentation in the folder
+        #   steps:
+        #     - name: folder_structure
+        #       description: Folder structure
+        #     - name: create_video
+        #       description: Use software x to create the video
+        #     - name: render_video
+        #       description: Render the video with the following media encoder settings
+  
+  sound_production:
+    runs-on:  ubuntu-latest
+    needs: {cleanup, video_production}
     steps:
-      - name: screen_record
-        description: High quality screen recording of the presentation prototype
-        steps:
-          - name: start_screen_recording
-            description: start screen recording the prototype
-          - name: record_video
-            description: Record the video
-          - name: edit_video
-            description: Edit the video
-      - name: export_assets
-        description: Export assets from the figma presentation in the folder
-        steps:
-          - name: folder_structure
-            description: Folder structure
-          - name: create_video
-            description: Use software x to create the video
-          - name: render_video
-            description: Render the video with the following media encoder settings
-
-sound_production:
-  description: Prepare sound for the video
-  steps:
-    - name: create_sound
-      description: Use software y to create the sound
-    - name: render_sound
-      description: Render the sound with the following settings
+      - name: create_sound
+        run: |
+          echo "Screen recording"
+      # - name: render_sound
+      #   description: Render the sound with the following settings
